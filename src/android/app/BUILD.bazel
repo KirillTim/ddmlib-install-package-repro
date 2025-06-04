@@ -1,0 +1,9 @@
+load("@rules_android//android:rules.bzl", "android_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+android_binary(
+    name = "app",
+    srcs = glob(["java/**/*.java"]),
+    manifest = "AndroidManifest.xml",
+)

@@ -4,6 +4,17 @@ package(default_visibility = ["//visibility:public"])
 
 java_binary(
     name = "Main",
+    srcs = ["Main.java"],
+    args = [
+        "$(location //src/android/app:app.apk)",
+        "$(location @@rules_android++android_sdk_repository_extension+androidsdk//:platform-tools/adb)",
+    ],
+    data = [
+        "//src/android/app:app.apk",
+        "@@rules_android++android_sdk_repository_extension+androidsdk//:platform-tools/adb",
+    ],
     main_class = "org.example.Main",
-    srcs = glob(["**/*.java"]),
+    deps = [
+        "@maven//:com_android_tools_ddms_ddmlib",
+    ],
 )
