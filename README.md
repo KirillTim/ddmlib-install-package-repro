@@ -2,6 +2,7 @@
 
 This sample reproduces the bug in 'device.installPackage'. The method hangs indefinitly when installing an APK to the emulator.
 
+Run it using `bazelisk run //src/main/org/example:Main`
 
 when installing an APK on the emulator (e.g. the emulator started from an android studio)
 
