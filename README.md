@@ -4,8 +4,11 @@ This sample reproduces the bug in 'device.installPackage'. The method hangs inde
 
 
 when installing an APK on the emulator (e.g. the emulator started from an android studio)
+
 the installation process hangs on the 'V/ddms: execute: running rm "/data/local/tmp/app.apk"' step.
+
 when invoking the same shell command from the terminal, (adb shell rm /data/local/tmp/app.apk), it works fine.
+
 the hanged process also ignores the timeout passed to the installPackage method.
 
 when installing an APK on a real device, the 'device.installPackage' method works fine.
