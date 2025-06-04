@@ -40,14 +40,18 @@ public class Main {
         .filter(device -> device.getSerialNumber().equals(DEVICE_SERIAL)).findFirst()
         .orElseThrow();
 
-    // when installing an APK on the emulator, the installation process hangs on the 'V/ddms: execute: running rm "/data/local/tmp/app.apk"' step.
+    // when installing an APK on the emulator (e.g. the emulator started from an android studio)
+    // the installation process hangs on the 'V/ddms: execute: running rm "/data/local/tmp/app.apk"' step.
     // when invoking the same shell command from the terminal, (adb shell rm /data/local/tmp/app.apk), it works fine.
     // the hanged process also ignores the timeout passed to the installPackage method.
+
+    // when installing an APK on a real device, the 'device.installPackage' method works fine.
     installApk(targetDevice, apkFile.getAbsolutePath());
 
     // This also works fine.
     // String installResult = executeShellCommandAndReadOutput(adbFile.getAbsolutePath(), List.of("install", apkFile.getAbsolutePath()));
     // System.out.println("Adb install cmd result: " + installResult);
+    AndroidDebugBridge.terminate();
   }
 
   private static void installApk(IDevice device, String apkPath)
