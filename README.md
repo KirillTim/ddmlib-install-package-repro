@@ -13,6 +13,11 @@ the hanged process also ignores the timeout passed to the installPackage method.
 
 when installing an APK on a real device, the 'device.installPackage' method works fine.
 
+I suspect, the process may hand because on the emulator sometimes the shell asks if I really want to delete the read only file (when doing adb shell rm) and waits for the `(Y/n)` confirmation.
+
+This happens to me once while I was playing with the ddmlib API.
+The weird thing is, however, that the API hangs even when the manual invocation of `adb shell rm ...` works fine
+
 Log for the emulator:
 ```
 INFO: Running command line: bazel-bin/src/main/org/example/Main src/android/app/app.apk ../rules_android++android_sdk_repository_extension+androidsdk/platform-tools/adb
